@@ -26,8 +26,9 @@ public partial class Student : System.Web.UI.Page
 
         string usertype = Session["usertype"].ToString();
         string userID = Session["userID"].ToString();
+
         mySqlData ms = new mySqlData();
-        Label_Welcome.Text = "欢迎：" + ms.MyRead(usertype,userID,"SELECT [sname] FROM [Students] WHERE [sno] = @userID") + "同学";
+        Label_Welcome.Text = "欢迎：" + ms.MyRead(usertype,userID,"SELECT [sname] FROM [Students] WHERE [sno] = @userID") + " 同学";
         string[] array = new string[100];
 
         SqlDataSource_StudentL.SelectCommand = "SELECT ccl.cdate, ccl.ctime, Course.cname, Teachers.tname FROM ccl INNER JOIN Students ON ccl.clno = Students.clno " +
