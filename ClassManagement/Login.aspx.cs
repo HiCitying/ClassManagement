@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
                 break;
         }
         SqlDataReader dr;
-        System.Data.SqlClient.SqlConnection conn = new SqlConnection();
+        SqlConnection conn = new SqlConnection();
         conn.ConnectionString = ConfigurationManager.ConnectionStrings["ClassManagementConnectionString"].ConnectionString;
         SqlCommand cmd = new SqlCommand();
         cmd.Connection = conn;
@@ -71,14 +71,17 @@ public partial class _Default : System.Web.UI.Page
                 if(dr.GetString(0) == userpwd)
                 {
                     Session.Add("usertype",usertype);
+                    Session.Add("userID", userId);
                     switch (usertype)
                     {
                         case "Admin":
-                            Response.Redirect("Student.aspx");
+                            Response.Redirect("Admin.aspx");
                             break;
                         case "Teachers":
+                            Response.Redirect("Student.aspx");
                             break;
                         case "Students":
+                            Response.Redirect("Teacher.aspx");
                             break;
                         default:
                             break;
