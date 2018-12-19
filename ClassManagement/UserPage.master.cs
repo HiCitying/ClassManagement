@@ -11,15 +11,5 @@ public partial class UserPage : System.Web.UI.MasterPage
     {
 
     }
-
-    protected void Label_Change_Click(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void Label_Logout_Click(object sender, EventArgs e)
-    {
-        Session.Clear();
-        Response.Redirect("Login.aspx");
-    }
+   
 }

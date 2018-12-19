@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page 
 {
@@ -36,76 +31,37 @@ public partial class _Default : System.Web.UI.Page
             default:
                 break;
         }
-        SqlDataReader dr;
-        SqlConnection conn = new SqlConnection();
-        conn.ConnectionString = ConfigurationManager.ConnectionStrings["ClassManagementConnectionString"].ConnectionString;
-        SqlCommand cmd = new SqlCommand();
-        cmd.Connection = conn;
-        cmd.CommandType = System.Data.CommandType.Text;
-        SqlParameter para = new SqlParameter();
+
+        mySqlData ms = new mySqlData();
+
         switch (usertype)
         {
             case "Admin":
-                cmd.CommandText = "SELECT [apwd] FROM [Admin] where [ano] = @userId";
-                para = new SqlParameter("@userId", System.Data.SqlDbType.VarChar, 50);
+                if (ms.MyRead(usertype, userId, "SELECT [apwd] FROM @Admin where [ano] = @userId").Equals(userpwd) == true)
+                {
+                    Session.Add("usertype", usertype);
+                    Session.Add("userID", userId);
+                    Response.Redirect("Admin.aspx");
+                }
                 break;
             case "Teachers":
-                cmd.CommandText = "SELECT [tpwd] FROM [Teachers] where [tno] = @userId";
-                para = new SqlParameter("@userId", System.Data.SqlDbType.VarChar, 50);
+                if (ms.MyRead(usertype, userId, "SELECT [tpwd] FROM [Teachers] where [tno] = @userId").Equals(userpwd) == true)
+                {
+                    Session.Add("usertype", usertype);
+                    Session.Add("userID", userId);
+                    Response.Redirect("Teacher.aspx");
+                }
                 break;
             case "Students":
-                cmd.CommandText = "SELECT [spwd] FROM [Students] where [sno] = @userId";
-                para = new SqlParameter("@userId", System.Data.SqlDbType.VarChar, 50);
+                if (ms.MyRead(usertype, userId, "SELECT [spwd] FROM [Students] where [sno] = @userId").Equals(userpwd) == true)
+                {
+                    Session.Add("usertype", usertype);
+                    Session.Add("userID", userId);
+                    Response.Redirect("Student.aspx");
+                }
                 break;
             default:
                 break;
-        }
-        para.Value = userId;
-        cmd.Parameters.Add(para);
-        try
-        {
-            conn.Open();
-            dr = cmd.ExecuteReader();
-            if(dr.Read())
-            {
-                if(dr.GetString(0) == userpwd)
-                {
-                    Session.Add("usertype",usertype);
-                    Session.Add("userID", userId);
-                    switch (usertype)
-                    {
-                        case "Admin":
-                            Response.Redirect("Admin.aspx");
-                            break;
-                        case "Teachers":
-                            Response.Redirect("Student.aspx");
-                            break;
-                        case "Students":
-                            Response.Redirect("Teacher.aspx");
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else
-                {
-                    Response.Write("<Script>alert(\"密码错误\")</Script>");
-                }
-            }
-            else
-            {
-                Response.Write("<Script>alert(\"用户不存在\")</Script>");
-            }
-            dr.Close();
-        }
-        catch(SqlException ex)
-        {
-            Response.Write(ex.Message);
-        }
-        finally
-        {
-            if (conn.State == System.Data.ConnectionState.Open)
-                conn.Close();
         }
     }
 }
