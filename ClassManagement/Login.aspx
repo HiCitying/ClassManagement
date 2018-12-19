@@ -39,7 +39,7 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <asp:Button ID="Button_sumit" runat="server" Text="登录" OnClick="Button_sumit_Click" />&nbsp;
+                    <asp:Button ID="Button_submit" runat="server" Text="登录" OnClick="Button_submit_Click" />&nbsp;
                     <asp:Button ID="Button_clear" runat="server" Text="重置" OnClick="Button_clear_Click" />
                 </td>
             </tr>

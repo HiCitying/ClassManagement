@@ -17,7 +17,7 @@ public partial class _Default : System.Web.UI.Page
         RadioButtonList_type.SelectedValue = "学生";
     }
 
-    protected void Button_sumit_Click(object sender, EventArgs e)
+    protected void Button_submit_Click(object sender, EventArgs e)
     {
         string userId = TextBox_UserID.Text.Trim();
         string userpwd = TextBox_Pwd.Text.Trim();
@@ -25,7 +25,7 @@ public partial class _Default : System.Web.UI.Page
         switch (RadioButtonList_type.SelectedValue.Trim())
         {
             case "管理员":
-                usertype = "admin";
+                usertype = "Admin";
                 break;
             case "教师":
                 usertype = "Teachers";
@@ -45,7 +45,7 @@ public partial class _Default : System.Web.UI.Page
         SqlParameter para = new SqlParameter();
         switch (usertype)
         {
-            case "admin":
+            case "Admin":
                 cmd.CommandText = "SELECT [apwd] FROM [Admin] where [ano] = @userId";
                 para = new SqlParameter("@userId", System.Data.SqlDbType.VarChar, 50);
                 break;
@@ -70,8 +70,19 @@ public partial class _Default : System.Web.UI.Page
             {
                 if(dr.GetString(0) == userpwd)
                 {
-                    Session.Add("login_name", userId);
-                    TextBox_UserID.Text = "";
+                    Session.Add("usertype",usertype);
+                    switch (usertype)
+                    {
+                        case "Admin":
+                            Response.Redirect("Student.aspx");
+                            break;
+                        case "Teachers":
+                            break;
+                        case "Students":
+                            break;
+                        default:
+                            break;
+                    }
                 }
                 else
                 {
