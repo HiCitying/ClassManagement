@@ -18,57 +18,63 @@
                 onrowcancelingedit="GridView1_RowCancelingEdit" 
                 onrowediting="GridView1_RowEditing" 
                 onrowupdating="GridView1_RowUpdating" 
-                onrowdeleting="GridView1_RowDeleting">
+                onrowdeleting="GridView1_RowDeleting" >
                 <Columns>
         <asp:TemplateField HeaderText="课程号">
             <EditItemTemplate>
-                <asp:TextBox ID="TextBox_cno" runat="server" Text='<%# Bind("cno") %>'/>
+                <asp:TextBox ID="TextBoxEditcno" runat="server" Text='<%# Bind("cno") %>'/>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="Label_cno" runat="server" Text='<%# Bind("cno") %>'/>
+                <asp:Label ID="Labelcno" runat="server" Text='<%# Bind("cno") %>'/>
             </ItemTemplate>
             <FooterTemplate>
-                    <asp:TextBox ID="TextBoxTeam" runat="server"/>
+                    <asp:TextBox ID="TextBoxcno" runat="server"/>
             </FooterTemplate>
         </asp:TemplateField>
                     
         <asp:TemplateField HeaderText="课程名">
             <EditItemTemplate>
-                <asp:TextBox ID="TextBox_cname" runat="server" Text='<%# Bind("cname") %>'/>
+                <asp:TextBox ID="TextBoxEditcname" runat="server" Text='<%# Bind("cname") %>'/>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="Label_cname" runat="server" Text='<%# Bind("cname") %>'/>
+                <asp:Label ID="Labelcname" runat="server" Text='<%# Bind("cname") %>'/>
             </ItemTemplate>
             <FooterTemplate>
-                    <asp:TextBox ID="TextBoxTeam" runat="server"/>
+                    <asp:TextBox ID="TextBoxcname" runat="server"/>
             </FooterTemplate>
         </asp:TemplateField>
                     
         <asp:TemplateField HeaderText="最大人数">
             <EditItemTemplate>
-                <asp:TextBox ID="TextBox_cmax" runat="server" Text='<%# Bind("cmax") %>'/>
+                <asp:TextBox ID="TextBoxEditcmax" runat="server" Text='<%# Bind("cmax") %>'/>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="Label_cmax" runat="server" Text='<%# Bind("cmax") %>'/>
+                <asp:Label ID="Labelcmax" runat="server" Text='<%# Bind("cmax") %>'/>
             </ItemTemplate>
             <FooterTemplate>
-                    <asp:TextBox ID="TextBoxTeam" runat="server"/>
+                    <asp:TextBox ID="TextBox" runat="server"/>
             </FooterTemplate>
         </asp:TemplateField>
                     
         <asp:TemplateField HeaderText="剩余人数">
             <EditItemTemplate>
-                <asp:TextBox ID="TextBox_cleft" runat="server" Text='<%# Bind("cleft") %>'/>
+                <asp:TextBox ID="TextBoxEditcleft" runat="server" Text='<%# Bind("cleft") %>'/>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Label ID="Label_cleft" runat="server" Text='<%# Bind("cleft") %>'/>
+                <asp:Label ID="Labelcleft" runat="server" Text='<%# Bind("cleft") %>'/>
             </ItemTemplate>
             <FooterTemplate>
-                    <asp:TextBox ID="TextBoxTeam" runat="server"/>
+                    <asp:TextBox ID="TextBoxcleft" runat="server"/>
             </FooterTemplate>
         </asp:TemplateField>
         <asp:CommandField ShowEditButton="True" ShowDeleteButton HeaderText="操作" />
     </Columns>
+                <FooterStyle BackColor="White" ForeColor="#000066" />
+                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+                <RowStyle ForeColor="#000066" />
+                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                
     </asp:GridView>
        <asp:Button ID="Button1" runat="server" Text="增  加" OnClick="Button1_Click" />
             </div>
