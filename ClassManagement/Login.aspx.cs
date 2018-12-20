@@ -37,7 +37,7 @@ public partial class _Default : System.Web.UI.Page
         switch (usertype)
         {
             case "Admin":
-                if (ms.MyRead(usertype, userId, "SELECT [apwd] FROM @Admin where [ano] = @userId").Equals(userpwd) == true)
+                if (ms.MyRead(usertype, userId, "SELECT [apwd] FROM Admin where [ano] = @userId").Equals(userpwd) == true)
                 {
                     Session.Add("usertype", usertype);
                     Session.Add("userID", userId);
