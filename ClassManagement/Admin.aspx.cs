@@ -99,7 +99,7 @@ public partial class Admin : System.Web.UI.Page
     private void AddNewRecord(string cno, string cname, string cmax, string cleft)
     {
         SqlConnection connection = new SqlConnection(GetConnectionString());
-        string sqlStatement = "INSERT INTO Manager1" +
+        string sqlStatement = "INSERT INTO Course" +
                               "(cno,cname,cmax,cleft)" +
                                "VALUES (@cno,@cname,@cmax,@cleft)";
         try
@@ -128,16 +128,13 @@ public partial class Admin : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        //TextBox tbcno = (TextBox)GridView1.FooterRow.Cells[0].FindControl("TextBoxcno");
-        //TextBox tbcname = (TextBox)GridView1.FooterRow.Cells[1].FindControl("TextBoxcname");
-        //TextBox tbcmax = (TextBox)GridView1.FooterRow.Cells[2].FindControl("TextBoxcmax");
-        //TextBox tbcleft = (TextBox)GridView1.FooterRow.Cells[3].FindControl("TextBoxcleft");
-        TextBox tbcno = (TextBox)GridView1.FindControl("TextBoxcno");
-        TextBox tbcname = (TextBox)GridView1.FindControl("TextBoxcname");
-        TextBox tbcmax = (TextBox)GridView1.FindControl("TextBoxcmax");
-        TextBox tbcleft = (TextBox)GridView1.FindControl("TextBoxcleft");
+        TextBox tbcno = (TextBox)GridView1.FooterRow.Cells[1].FindControl("TextBoxcno");
+        TextBox tbcname = (TextBox)GridView1.FooterRow.Cells[2].FindControl("TextBoxcname");
+        TextBox tbcmax = (TextBox)GridView1.FooterRow.Cells[3].FindControl("TextBoxcmax");
+        TextBox tbcleft = (TextBox)GridView1.FooterRow.Cells[4].FindControl("TextBoxcleft");
         if ((tbcno.Text.Trim() != "") && (tbcname.Text.Trim() != "") && (tbcmax.Text.Trim() != "") && (tbcleft.Text.Trim() != ""))
         {
+            AddNewRecord(tbcno.Text,tbcname.Text,tbcmax.Text,tbcleft.Text);
             BindGridView();
         }
     }
@@ -196,8 +193,7 @@ public partial class Admin : System.Web.UI.Page
         GridView1.EditIndex = -1; //Turn the Grid to read only mode
 
         BindGridView(); // Rebind GridView to reflect changes made
-
-        Response.Write("Update Seccessful!");
+        
 
     }
 
@@ -210,5 +206,11 @@ public partial class Admin : System.Web.UI.Page
 
         BindGridView(); // Rebind GridView to reflect changes made
 
+    }
+
+    protected void Button_Singout_Click(object sender, EventArgs e)
+    {
+        Session.Clear();
+        Response.Redirect("Login.aspx");
     }
 }

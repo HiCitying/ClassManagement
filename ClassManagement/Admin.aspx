@@ -6,10 +6,18 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div align="right">
+            <asp:Button ID="Button_Singout" align="end" runat="server" Text="退出" OnClick="Button_Singout_Click"/>
+        </div>
+        <div align="center">
 
             <asp:GridView ID="GridView1" runat="server"
                 BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" 
@@ -52,7 +60,7 @@
                 <asp:Label ID="Labelcmax" runat="server" Text='<%# Bind("cmax") %>'/>
             </ItemTemplate>
             <FooterTemplate>
-                    <asp:TextBox ID="TextBox" runat="server"/>
+                    <asp:TextBox ID="TextBoxcmax" runat="server"/>
             </FooterTemplate>
         </asp:TemplateField>
                     
@@ -76,7 +84,7 @@
                 <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
                 
     </asp:GridView>
-       <asp:Button ID="Button1" runat="server" Text="增  加" OnClick="Button1_Click" />
+       <asp:Button ID="Button1" Width="30%" runat="server" Text="增  加" OnClick="Button1_Click" />
             </div>
         </form>
 </body>

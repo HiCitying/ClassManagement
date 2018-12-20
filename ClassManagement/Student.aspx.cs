@@ -14,7 +14,7 @@ public partial class Student : System.Web.UI.Page
             {
                 Response.Redirect("Teacher.aspx");
             }
-            else if ((Session["usertype"].Equals("Admin") == false) & (Session["usertype"].Equals("Students") == false))
+            else if (Session["usertype"].Equals("Students") == false)
             {
                 Response.Redirect("Login.aspx");
             }
